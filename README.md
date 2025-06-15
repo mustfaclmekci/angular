@@ -1,27 +1,38 @@
-# Angular
+# 🧠 Görev Planlayıcı
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+**Görev Planlayıcı**, kullanıcıların günlük görevlerini kolayca ekleyip takip edebileceği, kategorilere ayırabileceği ve tamamlanan görevleri yönetebileceği modern bir web uygulamasıdır.
 
-## Development server
+🔗 **Canlı Uygulama:** [Görev Planlayıcı Web App](https://gorev-takip-b6356.web.app)  
+📦 **Teknolojiler:** Angular • Firebase Firestore • TypeScript • Bootstrap • SCSS  
+🌐 **Geliştirici:** Mustafa Çölmekçi
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## ✨ Özellikler
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- ✅ Görev ekleme / silme / tamamlama
+- 🗂️ Kategoriye göre filtreleme (İş, Okul, Kişisel, Diğer)
+- 🔍 Arama ve filtre sistemi
+- 📆 Bitiş tarihi seçme
+- 📊 İstatistik kartları: toplam, tamamlanan, kalan
+- 🌈 Responsive modern tasarım (mobil uyumlu)
+- 🔥 Firebase Firestore ile gerçek zamanlı veri kaydı
+- 🚀 Deploy edilmiş ve yayında!
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📷 Ekran Görüntüsü
 
-## Running unit tests
+![Görev Planlayıcı](assets/screenshot.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+> Not: Görseli `src/assets/screenshot.png` olarak projene eklemeni öneririm.
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🚀 Kurulum (Local)
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+git clone https://github.com/mustfaclmekci/angular.git
+cd angular
+npm install
+ng serve
