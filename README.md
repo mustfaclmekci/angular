@@ -20,6 +20,10 @@
 - 🚀 Deploy edilmiş ve yayında!
 
 ---
+## 📷 Ekran Görüntüsü
+
+![Görev Planlayıcı](src/assets/screenshot.png)
+--
 
 ## 🚀 Kurulum (Local)
 
