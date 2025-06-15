@@ -9,9 +9,11 @@
   />
 </div>
 
-<!-- FORM, ARAMA, FİLTRELER, İSTATİSTİKLER -->
+<!-- ANA KAPSAYICI: tüm görev işlemleri burada -->
 <div class="task-container">
-  <!-- GÖREV EKLEME FORMU -->
+
+  <!-- 🟩 GÖREV EKLEME FORMU -->
+  <!-- [(ngModel)] sayesinde inputlardaki veriler TS dosyasındaki değişkenlere bağlı -->
   <div class="task-form glass-card mb-4">
     <input
       [(ngModel)]="taskTitle"
@@ -35,12 +37,14 @@
     <label class="mt-2">Bitiş Tarihi</label>
     <input type="date" [(ngModel)]="taskDueDate" class="form-control mb-3" />
 
+    <!-- Görev ekleme fonksiyonu tetiklenir -->
     <button (click)="addTask()" class="btn btn-primary w-100 mt-2">
       🚀 Görev Ekle
     </button>
   </div>
 
-  <!-- ARAMA VE KATEGORİ FİLTRELEME -->
+  <!-- 🔍 ARAMA VE KATEGORİ FİLTRELEME -->
+  <!-- Arama inputu ve kategori butonları ngModel ve click ile kontrol ediliyor -->
   <div class="d-flex flex-wrap align-items-center mb-4" style="gap: 10px">
     <input
       [(ngModel)]="searchText"
@@ -82,7 +86,8 @@
     </div>
   </div>
 
-  <!-- TAMAMLANANLARI GÖSTERME -->
+  <!-- ✅ TAMAMLANANLARI GÖSTER/GİZLE -->
+  <!-- Checkbox ile tamamlanan görevleri gösterip gizleyebiliyorsun -->
   <div class="form-check mb-3">
     <input
       class="form-check-input"
@@ -95,7 +100,8 @@
     </label>
   </div>
 
-  <!-- İSTATİSTİK KARTLARI -->
+  <!-- 📊 İSTATİSTİK KARTLARI -->
+  <!-- async pipe ile observable olan tasks$ verisi elde edilir -->
   <div *ngIf="tasks$ | async as tasks" class="row text-center mb-4">
     <div class="col-md-4">
       <div class="stat-card bg-primary text-white p-3 rounded">
@@ -117,7 +123,8 @@
     </div>
   </div>
 
-  <!-- GÖREV KARTLARI -->
+  <!-- 📋 GÖREV KARTLARI -->
+  <!-- filteredTasks() fonksiyonu ile filtrelenmiş görevler listelenir -->
   <div *ngIf="tasks$ | async as tasks" class="task-grid">
     <div
       *ngFor="let task of filteredTasks(tasks)"
@@ -129,9 +136,13 @@
         <div class="completed-icon" *ngIf="task.completed">✔️ Tamamlandı</div>
         <h5>{{ task.title }}</h5>
         <p class="text-muted">{{ task.description }}</p>
+
+        <!-- görev kategorisine göre rozet rengi değişir -->
         <span class="badge" [ngClass]="getBadgeClass(task.category)">
           {{ task.category }}
         </span>
+
+        <!-- tarihleri angular pipe ile formatlıyoruz -->
         <small class="text-light d-block">
           Eklendi:
           {{
@@ -150,7 +161,7 @@
         </small>
       </div>
 
-      <!-- BUTONLAR -->
+      <!-- GÖREV TAMAMLAMA VE SİLME BUTONLARI -->
       <div class="d-flex justify-content-between align-items-center mt-3">
         <button
           (click)="toggleComplete(task)"

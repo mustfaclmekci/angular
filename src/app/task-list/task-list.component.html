@@ -1,38 +1,39 @@
+<!-- görev ekleme formu -->
 <div class="task-form">
   <h3>Yeni Görev Ekle</h3>
-  <input
-    [(ngModel)]="taskTitle"
-    placeholder="Başlık"
-    class="form-control mb-2"
-  />
-  <textarea
-    [(ngModel)]="taskDescription"
-    placeholder="Açıklama"
-    class="form-control mb-2"
-  ></textarea>
 
-  <!-- Buraya kategori seçme dropdown'u ekliyoruz -->
-  <select [(ngModel)]="selectedCategory" class="form-select mt-3 mb-3">
-    <option value="Tümü">Tümü</option>
+  <!-- başlık girişi -->
+  <input [(ngModel)]="taskTitle" placeholder="Başlık" class="form-control mb-2" />
+
+  <!-- açıklama girişi -->
+  <textarea [(ngModel)]="taskDescription" placeholder="Açıklama" class="form-control mb-2"></textarea>
+
+  <!-- kategori seçimi -->
+  <select [(ngModel)]="taskCategory" class="form-select mt-3 mb-3">
     <option value="İş">İş</option>
     <option value="Okul">Okul</option>
     <option value="Kişisel">Kişisel</option>
     <option value="Diğer">Diğer</option>
   </select>
 
+  <!-- ekle butonu -->
   <button (click)="addTask()" class="btn btn-success">Ekle</button>
 </div>
->
 
 <hr />
 
+<!-- görevleri göster/gizle butonu -->
 <button (click)="showTasks = !showTasks" class="btn btn-outline-primary mt-3">
   {{ showTasks ? "Görevleri Gizle" : "Görevleri Göster" }}
 </button>
 
+<!-- yükleniyorsa bilgi -->
 <div *ngIf="loading" class="mt-3">Görevler yükleniyor...</div>
+
+<!-- hata varsa göster -->
 <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
 
+<!-- görev listesi -->
 <ul *ngIf="!loading && !error && showTasks" class="list-group mt-3">
   <li
     *ngFor="let task of filteredTasks"
@@ -40,20 +41,27 @@
     [class.list-group-item-success]="task.completed"
   >
     <div>
+      <!-- checkbox ile tamamlandı işareti -->
       <input
         type="checkbox"
         [checked]="task.completed"
         (change)="toggleComplete(task)"
         class="form-check-input me-2"
       />
+
+      <!-- görev başlığı -->
       <strong>{{ task.title }}</strong>
       <br />
+
+      <!-- görev açıklaması -->
       <small>{{ task.description }}</small>
       <br />
+
+      <!-- kategori bilgisi -->
       <em>{{ task.category || "Kategori yok" }}</em>
     </div>
-    <button (click)="deleteTask(task)" class="btn btn-danger btn-sm">
-      Sil
-    </button>
+
+    <!-- görev silme butonu -->
+    <button (click)="deleteTask(task)" class="btn btn-danger btn-sm">Sil</button>
   </li>
 </ul>

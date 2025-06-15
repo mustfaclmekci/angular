@@ -32,21 +32,30 @@
   margin-top: 30px;
 }
 /* Kartlar */
-.task-card {
+  .task-card {
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 16px;
-  padding: 20px;
-  transition: 0.3s;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   color: #fff;
-  width: 100%;
-  max-width: 220px;
-    opacity: 0;
-  transform: scale(0.95);
-  animation: fadeInScale 0.5s ease forwards;
+
+  width: 220px;       /* Genişlik sabit */
+  height: 220px;      /* Yükseklik sabit => kare olur */
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+
+  transition: none !important;
+  transform: none !important;
+  animation: none !important;
 }
+
+
+
 @keyframes fadeInScale {
   to {
     opacity: 1;
@@ -56,8 +65,9 @@
 
 .task-card h5,
 .task-card p,
-.task-card .badge {
-  color: #fff;
+.task-card .badge,
+.task-card button {
+  transition: all 0.2s ease-in-out; /* 🛠 Yumuşak geçişler */
 }
 
 /* RESPONSIVE grid satır sayısı */
@@ -162,14 +172,25 @@ small {
   accent-color: #0d6efd;
 }
 
+.task-card.completed button {
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+  display: inline-block;
+  line-height: 1; 
+
+}
 .task-card.completed h5,
 .task-card.completed p,
-.task-card.completed .badge,
-.task-card.completed button {
+.task-card.completed .badge {
   text-decoration: line-through;
-  font-style: italic;
+  font-style: normal;
   color: #d0fdd8;
+  opacity: 0.8;
+  line-height: 1.2;
+  font-size: inherit;
+  margin: 0;
 }
+
 
 .btn-outline-danger {
   color: #ff4d4d;
@@ -231,4 +252,6 @@ small {
   justify-content: space-between;
   gap: 10px;
   flex-wrap: wrap;
+  min-height: 40px;
 }
+

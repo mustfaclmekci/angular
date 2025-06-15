@@ -1,5 +1,7 @@
 <div class="login-wrapper">
   <div class="login-box">
+
+    <!-- kullanıcıya gösterilecek logo -->
     <div class="text-center mb-4">
       <img
         src="assets/login-logo.png"
@@ -9,9 +11,14 @@
         alt="Logo"
       />
     </div>
-    <h2 class="text-center">🔐 Giriş Yap</h2>
 
+    <!-- başlık -->
+    <h2 class="text-center">Giriş Yap</h2>
+
+    <!-- form tagine (ngSubmit) ile login fonksiyonu bağlandı -->
     <form (ngSubmit)="login()" class="login-form">
+
+      <!-- [(ngModel)] ile iki yönlü veri bağlama yapılır, Angular inputtaki veriyi component'e aktarır -->
       <input
         type="email"
         [(ngModel)]="email"
@@ -19,22 +26,30 @@
         placeholder="E-posta"
         required
       />
+
       <input
         type="password"
         [(ngModel)]="password"
         name="password"
         placeholder="Şifre"
+        minlength="6"
         required
       />
+
+      <!-- form gönderme butonu -->
       <button type="submit">Giriş Yap</button>
+
+      <!-- hata varsa kullanıcıya gösterilir, Angular'ın *ngIf yapısı kullanılır -->
       <p *ngIf="error" class="error-text mt-2">{{ error }}</p>
 
+      <!-- yönlendirme linkleri, Angular routerLink ile sayfa değişimi yapılır -->
       <p class="text-center mt-3 text-light">
         Hesabınız yok mu? <a routerLink="/register">Kayıt Ol</a>
       </p>
       <p class="text-center mt-2 text-light">
         <a routerLink="/reset-password">Şifremi mi unuttum?</a>
       </p>
+
     </form>
   </div>
 </div>
