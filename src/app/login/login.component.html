@@ -1,0 +1,40 @@
+<div class="login-wrapper">
+  <div class="login-box">
+    <div class="text-center mb-4">
+      <img
+        src="assets/login-logo.png"
+        width="170"
+        height="170"
+        style="border-radius: 50%"
+        alt="Logo"
+      />
+    </div>
+    <h2 class="text-center">🔐 Giriş Yap</h2>
+
+    <form (ngSubmit)="login()" class="login-form">
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="E-posta"
+        required
+      />
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Şifre"
+        required
+      />
+      <button type="submit">Giriş Yap</button>
+      <p *ngIf="error" class="error-text mt-2">{{ error }}</p>
+
+      <p class="text-center mt-3 text-light">
+        Hesabınız yok mu? <a routerLink="/register">Kayıt Ol</a>
+      </p>
+      <p class="text-center mt-2 text-light">
+        <a routerLink="/reset-password">Şifremi mi unuttum?</a>
+      </p>
+    </form>
+  </div>
+</div>

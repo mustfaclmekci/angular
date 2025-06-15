@@ -1,0 +1,15 @@
+<div class="task-form">
+  <h3>Yeni Görev Ekle</h3>
+  <input [(ngModel)]="task.title" placeholder="Başlık" />
+  <textarea [(ngModel)]="task.description" placeholder="Açıklama"></textarea>
+  
+  <select [(ngModel)]="task.category">
+    <option value="">Kategori Seçin</option>
+    <option value="İş">İş</option>
+    <option value="Okul">Okul</option>
+    <option value="Kişisel">Kişisel</option>
+    <option value="Diğer">Diğer</option>
+  </select>
+  
+  <button (click)="addTask()">Ekle</button>
+</div>

@@ -1,0 +1,15 @@
+<div class="login-wrapper">
+  <div class="login-box">
+    <img src="assets/register-logo.png" class="logo" alt="Logo" />
+    <h2>📝 Kayıt Ol</h2>
+
+    <form (ngSubmit)="register()" class="login-form">
+      <input type="email" [(ngModel)]="email" name="email" placeholder="E-posta" required />
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Şifre" required />
+      <button type="submit">Kayıt Ol</button>
+      <p *ngIf="error" class="error-text mt-2">{{ error }}</p>
+    </form>
+
+    <p class="register">Zaten hesabınız var mı? <a routerLink="/login">Giriş Yap</a></p>
+  </div>
+</div>

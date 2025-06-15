@@ -1,0 +1,170 @@
+<!-- ÜST KISIM: Logo ve Başlık -->
+<div class="text-center mb-4">
+  <img
+    src="assets/logo.png"
+    width="170"
+    height="170"
+    style="border-radius: 50%"
+    alt="Logo"
+  />
+</div>
+
+<!-- FORM, ARAMA, FİLTRELER, İSTATİSTİKLER -->
+<div class="task-container">
+  <!-- GÖREV EKLEME FORMU -->
+  <div class="task-form glass-card mb-4">
+    <input
+      [(ngModel)]="taskTitle"
+      placeholder="Görev Başlığı"
+      class="form-control"
+    />
+    <textarea
+      [(ngModel)]="taskDescription"
+      placeholder="Açıklama"
+      class="form-control"
+    ></textarea>
+
+    <select [(ngModel)]="taskCategory" class="form-control">
+      <option value="" disabled selected>Kategori Seç</option>
+      <option value="İş">İş</option>
+      <option value="Okul">Okul</option>
+      <option value="Kişisel">Kişisel</option>
+      <option value="Diğer">Diğer</option>
+    </select>
+
+    <label class="mt-2">Bitiş Tarihi</label>
+    <input type="date" [(ngModel)]="taskDueDate" class="form-control mb-3" />
+
+    <button (click)="addTask()" class="btn btn-primary w-100 mt-2">
+      🚀 Görev Ekle
+    </button>
+  </div>
+
+  <!-- ARAMA VE KATEGORİ FİLTRELEME -->
+  <div class="d-flex flex-wrap align-items-center mb-4" style="gap: 10px">
+    <input
+      [(ngModel)]="searchText"
+      placeholder="🔍 Ara"
+      class="form-control"
+      style="flex: 0 0 40%; min-width: 200px"
+    />
+    <div class="d-flex flex-wrap gap-2" style="flex: 1">
+      <button
+        class="btn btn-outline-dark btn-sm"
+        (click)="selectedFilterCategory = 'Tümü'"
+      >
+        Tümü
+      </button>
+      <button
+        class="btn btn-outline-primary btn-sm"
+        (click)="selectedFilterCategory = 'İş'"
+      >
+        💼 İş
+      </button>
+      <button
+        class="btn btn-outline-info btn-sm"
+        (click)="selectedFilterCategory = 'Okul'"
+      >
+        🎓 Okul
+      </button>
+      <button
+        class="btn btn-outline-success btn-sm"
+        (click)="selectedFilterCategory = 'Kişisel'"
+      >
+        🧘‍♂️ Kişisel
+      </button>
+      <button
+        class="btn btn-outline-secondary btn-sm"
+        (click)="selectedFilterCategory = 'Diğer'"
+      >
+        📁 Diğer
+      </button>
+    </div>
+  </div>
+
+  <!-- TAMAMLANANLARI GÖSTERME -->
+  <div class="form-check mb-3">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      id="toggleCompleted"
+      [(ngModel)]="showCompleted"
+    />
+    <label class="form-check-label" for="toggleCompleted">
+      Tamamlananları Göster
+    </label>
+  </div>
+
+  <!-- İSTATİSTİK KARTLARI -->
+  <div *ngIf="tasks$ | async as tasks" class="row text-center mb-4">
+    <div class="col-md-4">
+      <div class="stat-card bg-primary text-white p-3 rounded">
+        <h5>Toplam Görev</h5>
+        <h3>{{ getStats(tasks).total }}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card bg-success text-white p-3 rounded">
+        <h5>Tamamlanan</h5>
+        <h3>{{ getStats(tasks).completed }}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card bg-warning text-dark p-3 rounded">
+        <h5>Kalan</h5>
+        <h3>{{ getStats(tasks).remaining }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- GÖREV KARTLARI -->
+  <div *ngIf="tasks$ | async as tasks" class="task-grid">
+    <div
+      *ngFor="let task of filteredTasks(tasks)"
+      class="task-card"
+      [ngClass]="{ completed: task.completed }"
+    >
+      <!-- GÖREV BİLGİLERİ -->
+      <div>
+        <div class="completed-icon" *ngIf="task.completed">✔️ Tamamlandı</div>
+        <h5>{{ task.title }}</h5>
+        <p class="text-muted">{{ task.description }}</p>
+        <span class="badge" [ngClass]="getBadgeClass(task.category)">
+          {{ task.category }}
+        </span>
+        <small class="text-light d-block">
+          Eklendi:
+          {{
+            task.createdAt?.toDate
+              ? (task.createdAt.toDate() | date : "dd.MM.yyyy")
+              : (task.createdAt | date : "dd.MM.yyyy")
+          }}
+        </small>
+        <small *ngIf="task.dueDate" class="text-light d-block">
+          Bitiş:
+          {{
+            task.dueDate.toDate
+              ? (task.dueDate.toDate() | date : "dd.MM.yyyy")
+              : (task.dueDate | date : "dd.MM.yyyy")
+          }}
+        </small>
+      </div>
+
+      <!-- BUTONLAR -->
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <button
+          (click)="toggleComplete(task)"
+          class="btn btn-outline-success btn-sm flex-fill me-1"
+        >
+          {{ task.completed ? "↩️ Geri Al" : "✅ Tamamla" }}
+        </button>
+        <button
+          (click)="deleteTask(task)"
+          class="btn btn-outline-danger btn-sm"
+        >
+          🗑
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
