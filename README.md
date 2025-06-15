@@ -21,14 +21,6 @@
 
 ---
 
-## 📷 Ekran Görüntüsü
-
-![Görev Planlayıcı](assets/screenshot.png)
-
-> Not: Görseli `src/assets/screenshot.png` olarak projene eklemeni öneririm.
-
----
-
 ## 🚀 Kurulum (Local)
 
 ```bash
