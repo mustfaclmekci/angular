@@ -22,7 +22,8 @@
 ---
 ## 📷 Ekran Görüntüsü
 
-![Görev Planlayıcı](src/assets/screenshot.png)
+![Görev Planlayıcı](assets/screenshot.png)
+
 --
 
 ## 🚀 Kurulum (Local)
